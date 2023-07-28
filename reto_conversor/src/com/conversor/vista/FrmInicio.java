@@ -4,20 +4,26 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
 import java.awt.Font;
-import java.awt.SystemColor;
 import java.awt.Color;
-import javax.swing.JButton;
-import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.ImageIcon;
+import javax.swing.Icon;
+import javax.swing.SwingConstants;
+import javax.swing.JButton;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class FrmInicio extends JFrame {
 
 	private JPanel contentPane;
+	private JLabel lblTitulo = new JLabel("Selecciona el Tipo de Conversor");
+	private JButton btnMoneda = new JButton("Convertir Divisas");
+	private JButton btnTemperatura = new JButton("Convertir Temperatura");
 
 	/**
 	 * Launch the application.
@@ -40,42 +46,116 @@ public class FrmInicio extends JFrame {
 	 */
 	public FrmInicio() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 680, 409);
-		this.setLocationRelativeTo(null);
+		setBounds(100, 100, 721, 400);
+		
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(245, 245, 220));
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-
+		contentPane.setBorder(null);
 		setContentPane(contentPane);
 		
-		JLabel lblNewLabel = new JLabel("Selecciona el Tipo de Conversor");
-		lblNewLabel.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 28));
+		//Iniciar Componentes
+		initComponents();
 		
-		JButton btnNewButton = new JButton("New button");
-		btnNewButton.setIcon(null);
+		//Cargar Eventos
+		CargarEventos();
+		
+		this.setLocationRelativeTo(null);
+		this.setTitle("Conversor Inicio");
+	}
+	
+	private void initComponents() {
+		//Label
+		lblTitulo.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 28));
+		
+		//Botones
+		btnMoneda.setFont(new Font("Tw Cen MT Condensed", Font.BOLD, 20));
+		btnMoneda.setForeground(Color.BLACK);
+		btnMoneda.setVerticalAlignment(SwingConstants.BOTTOM);
+		btnMoneda.setContentAreaFilled(false);
+		btnMoneda.setFocusPainted(false);
+		btnMoneda.setBorderPainted(false);
+		ImageIcon image = new ImageIcon("src/Assets/Images/logos_divisas.png");
+		Icon icon = new ImageIcon(image.getImage().getScaledInstance(125, 125, DO_NOTHING_ON_CLOSE));
+		btnMoneda.setIcon(icon);
+		
+		btnTemperatura.setVerticalAlignment(SwingConstants.BOTTOM);
+		btnTemperatura.setForeground(Color.BLACK);
+		btnTemperatura.setFont(new Font("Tw Cen MT Condensed", Font.BOLD, 20));
+		btnTemperatura.setFocusPainted(false);
+		btnTemperatura.setContentAreaFilled(false);
+		btnTemperatura.setBorderPainted(false);
+		ImageIcon imageTemp = new ImageIcon("src/Assets/Images/logo_temperatura.png");
+		Icon iconTemp = new ImageIcon(imageTemp.getImage().getScaledInstance(125, 125, DO_NOTHING_ON_CLOSE));
+		btnTemperatura.setIcon(iconTemp);
+		
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(126)
-							.addComponent(lblNewLabel))
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(32)
-							.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 183, GroupLayout.PREFERRED_SIZE)))
-					.addContainerGap(125, Short.MAX_VALUE))
+					.addGap(28)
+					.addComponent(btnMoneda, GroupLayout.PREFERRED_SIZE, 285, GroupLayout.PREFERRED_SIZE)
+					.addGap(45)
+					.addComponent(btnTemperatura, GroupLayout.PREFERRED_SIZE, 329, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(20, Short.MAX_VALUE))
+				.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
+					.addContainerGap(156, Short.MAX_VALUE)
+					.addComponent(lblTitulo)
+					.addGap(146))
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGap(28)
-					.addComponent(lblNewLabel)
-					.addGap(27)
-					.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 151, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(118, Short.MAX_VALUE))
+					.addComponent(lblTitulo)
+					.addGap(50)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnMoneda, GroupLayout.PREFERRED_SIZE, 154, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnTemperatura, GroupLayout.PREFERRED_SIZE, 154, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap(93, Short.MAX_VALUE))
 		);
 		contentPane.setLayout(gl_contentPane);
 	}
-
+	
+	private void CargarEventos() {
+		btnMoneda.addMouseListener(new MouseAdapter() {
+			@Override
+            public void mouseEntered(MouseEvent arg0) {
+				btnMoneda.setForeground(new Color(139, 90, 43));
+            }
+            @Override
+            public void mouseExited(MouseEvent e) {
+            	btnMoneda.setForeground((Color.BLACK));
+            }
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				FrmMonedas frmMoneda = new FrmMonedas();
+				
+				frmMoneda.setVisible(true);
+				
+				dispose();
+			}
+		});
+		
+		btnTemperatura.addMouseListener(new MouseAdapter() {
+			@Override
+            public void mouseEntered(MouseEvent arg0) {
+				btnTemperatura.setForeground(new Color(139, 90, 43));
+            }
+            @Override
+            public void mouseExited(MouseEvent e) {
+            	btnTemperatura.setForeground((Color.BLACK));
+            }
+            
+            @Override
+			public void mouseClicked(MouseEvent e) {
+				FrmTemperatura frmTemperatura = new FrmTemperatura();
+				
+				frmTemperatura.setVisible(true);
+				
+				dispose();
+			}
+		});
+	}
+	
+	
 }
