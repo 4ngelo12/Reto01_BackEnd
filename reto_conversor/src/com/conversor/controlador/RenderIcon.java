@@ -10,7 +10,7 @@ import javax.swing.JList;
 public class RenderIcon extends DefaultListCellRenderer{
 	Hashtable<Object, ImageIcon> image;
 	ImageIcon mImg = new ImageIcon(new ImageIcon(this.getClass().getResource("")).getImage().
-			getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH));
+			getScaledInstance(48, 48, java.awt.Image.SCALE_SMOOTH));
 	
 	public RenderIcon (Hashtable<Object, ImageIcon> image) {
 		this.image = image;

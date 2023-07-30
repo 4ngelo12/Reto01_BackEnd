@@ -17,5 +17,6 @@ public class MonedasController{
 		RenderIcon render = new RenderIcon(hm);
 		cb.setRenderer(render);
 		cb2.setRenderer(render);
+		cb2.setSelectedIndex(1);
 	}
 }

@@ -24,6 +24,9 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JButton;
 
 import com.conversor.controlador.MonedasController;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import javax.swing.DefaultComboBoxModel;
 
 public class FrmMonedas extends JFrame {
 
@@ -54,7 +57,7 @@ public class FrmMonedas extends JFrame {
 		
 		//Colocar Componentes
 		initComponents();
-		Hashtable<Object, ImageIcon> hm = new Hashtable();
+		Hashtable<Object, ImageIcon> hm = new Hashtable<Object, ImageIcon>();
 		
 		mc.AgregarDatosCb(cbDivOrigen, cbDivDestino, hm);
 		
@@ -84,10 +87,13 @@ public class FrmMonedas extends JFrame {
 		
 		//TextFields
 		txtCantidad = new JTextField();
+		
+		txtCantidad.setText("1");
 		txtCantidad.setFont(new Font("SimSun", Font.PLAIN, 18));
 		txtCantidad.setColumns(10);
 		
 		txtMonto = new JTextField();
+		txtMonto.setEditable(false);
 		txtMonto.setFont(new Font("SimSun", Font.PLAIN, 18));
 		txtMonto.setColumns(10);
 		
@@ -149,8 +155,8 @@ public class FrmMonedas extends JFrame {
 						.addComponent(lblNewLabel_1_1_1, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(cbDivOrigen, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(cbDivDestino, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE))
+						.addComponent(cbDivOrigen, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
+						.addComponent(cbDivDestino, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE))
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addGap(18)
@@ -183,6 +189,21 @@ public class FrmMonedas extends JFrame {
 				frmHome.setVisible(true);
 				
 				dispose();
+			}
+		});
+		
+		txtCantidad.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				int key = e.getKeyChar();
+				
+			    boolean numeros = key >= 48 && key <= 57 || key == 46;
+			    boolean dotValidation = txtCantidad.getText().contains(".");
+			    
+			    if (!numeros || dotValidation)
+			    {
+			    	e.consume();
+			    }
 			}
 		});
 	}
