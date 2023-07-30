@@ -2,6 +2,7 @@ package com.conversor.vista;
 
 import java.awt.EventQueue;
 
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -16,10 +17,13 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Hashtable;
 
 import javax.swing.JComboBox;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JButton;
+
+import com.conversor.controlador.MonedasController;
 
 public class FrmMonedas extends JFrame {
 
@@ -29,18 +33,19 @@ public class FrmMonedas extends JFrame {
 	private JLabel lblNewLabel = new JLabel("Conversor de Divisas");
 	private JLabel lblNewLabel_1 = new JLabel("Cantidad");
 	private JLabel lblNewLabel_1_1 = new JLabel("De");
-	private JComboBox cbDivOrigen = new JComboBox();
-	private JComboBox cbDivDestino = new JComboBox();
+	private JComboBox<String> cbDivOrigen = new JComboBox<String>();
+	private JComboBox<String> cbDivDestino = new JComboBox<String>();
 	private JLabel lblNewLabel_1_1_1 = new JLabel("A");
 	private JLabel lblNewLabel_1_2 = new JLabel("Monto:");
 	private JButton btnHome = new JButton("Home");
+	private MonedasController mc = new MonedasController();
 	
 	/**
 	 * Create the frame.
 	 */
 	public FrmMonedas() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 462, 410);
+		setBounds(100, 100, 462, 393);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(234, 234, 220));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -49,6 +54,9 @@ public class FrmMonedas extends JFrame {
 		
 		//Colocar Componentes
 		initComponents();
+		Hashtable<Object, ImageIcon> hm = new Hashtable();
+		
+		mc.AgregarDatosCb(cbDivOrigen, cbDivDestino, hm);
 		
 		//Cargar Eventos
 		CargarEventos();
@@ -60,6 +68,11 @@ public class FrmMonedas extends JFrame {
 	}
 	
 	private void initComponents() {
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setOpaque(true);
+		lblNewLabel.setForeground(new Color(255, 233, 179));
+		lblNewLabel.setBackground(new Color(190, 135, 89));
+		
 		//Labels
 		lblNewLabel.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 28));
 		lblNewLabel_1.setFont(new Font("Bodoni MT", Font.PLAIN, 20));
@@ -90,7 +103,7 @@ public class FrmMonedas extends JFrame {
 		btnHome.setContentAreaFilled(false);
 		btnHome.setFocusPainted(false);
 		btnHome.setBorderPainted(false);
-		ImageIcon image = new ImageIcon("src/Assets/Images/logo_home.png");
+		ImageIcon image = new ImageIcon("src/Assets/Images/LogosInicio/logo_home.png");
 		Icon icon = new ImageIcon(image.getImage().getScaledInstance(50, 50, DO_NOTHING_ON_CLOSE));
 		btnHome.setIcon(icon);
 		
@@ -98,8 +111,8 @@ public class FrmMonedas extends JFrame {
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addContainerGap(45, Short.MAX_VALUE)
+				.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
+					.addGap(33)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addComponent(lblNewLabel_1, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE)
@@ -119,18 +132,14 @@ public class FrmMonedas extends JFrame {
 							.addComponent(txtMonto, GroupLayout.PREFERRED_SIZE, 124, GroupLayout.PREFERRED_SIZE)
 							.addGap(29)
 							.addComponent(btnHome, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE)))
-					.addGap(24))
-				.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
-					.addGap(79)
-					.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 273, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(86, Short.MAX_VALUE))
+					.addContainerGap(36, Short.MAX_VALUE))
+				.addComponent(lblNewLabel, GroupLayout.DEFAULT_SIZE, 438, Short.MAX_VALUE)
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(19)
-					.addComponent(lblNewLabel)
-					.addGap(60)
+					.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 65, GroupLayout.PREFERRED_SIZE)
+					.addGap(41)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
 						.addComponent(lblNewLabel_1)
 						.addComponent(txtCantidad, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
@@ -151,7 +160,7 @@ public class FrmMonedas extends JFrame {
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
 								.addComponent(lblNewLabel_1_2, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
 								.addComponent(txtMonto, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE))))
-					.addContainerGap(40, Short.MAX_VALUE))
+					.addContainerGap(51, Short.MAX_VALUE))
 		);
 		contentPane.setLayout(gl_contentPane);
 	}
