@@ -47,7 +47,7 @@ public class FrmMonedas extends JFrame {
 	 */
 	public FrmMonedas() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 462, 393);
+		setBounds(100, 100, 570, 393);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(234, 234, 220));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -77,9 +77,9 @@ public class FrmMonedas extends JFrame {
 		//Labels
 		lblNewLabel.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 28));
 		lblNewLabel_1.setFont(new Font("Bodoni MT", Font.PLAIN, 20));
-		lblNewLabel_1_1.setFont(new Font("Bodoni MT", Font.PLAIN, 20));
+		lblNewLabel_1_1.setFont(new Font("Bodoni MT", Font.PLAIN, 26));
 
-		lblNewLabel_1_1_1.setFont(new Font("Bodoni MT", Font.PLAIN, 20));
+		lblNewLabel_1_1_1.setFont(new Font("Bodoni MT", Font.PLAIN, 26));
 		
 		lblNewLabel_1_2.setFont(new Font("Bodoni MT", Font.PLAIN, 20));
 		
@@ -113,30 +113,36 @@ public class FrmMonedas extends JFrame {
 		
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.TRAILING)
-				.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
-					.addGap(33)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_contentPane.createSequentialGroup()
-							.addComponent(lblNewLabel_1, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE)
+							.addGap(33)
+							.addComponent(lblNewLabel_1_2, GroupLayout.PREFERRED_SIZE, 73, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(txtCantidad, GroupLayout.PREFERRED_SIZE, 234, GroupLayout.PREFERRED_SIZE))
+							.addComponent(txtMonto, GroupLayout.PREFERRED_SIZE, 176, GroupLayout.PREFERRED_SIZE))
 						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-								.addComponent(cbDivOrigen, GroupLayout.PREFERRED_SIZE, 147, GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblNewLabel_1_1, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE))
-							.addPreferredGap(ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-								.addComponent(lblNewLabel_1_1_1, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
-								.addComponent(cbDivDestino, GroupLayout.PREFERRED_SIZE, 147, GroupLayout.PREFERRED_SIZE)))
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addComponent(lblNewLabel_1_2, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE)
+							.addGap(41)
+							.addComponent(lblNewLabel_1_1, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(txtMonto, GroupLayout.PREFERRED_SIZE, 124, GroupLayout.PREFERRED_SIZE)
-							.addGap(29)
-							.addComponent(btnHome, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE)))
-					.addContainerGap(36, Short.MAX_VALUE))
-				.addComponent(lblNewLabel, GroupLayout.DEFAULT_SIZE, 438, Short.MAX_VALUE)
+							.addComponent(cbDivOrigen, GroupLayout.PREFERRED_SIZE, 147, GroupLayout.PREFERRED_SIZE)))
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(54)
+							.addComponent(btnHome, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(39)
+							.addComponent(lblNewLabel_1_1_1)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(cbDivDestino, GroupLayout.PREFERRED_SIZE, 147, GroupLayout.PREFERRED_SIZE)))
+					.addContainerGap(81, Short.MAX_VALUE))
+				.addComponent(lblNewLabel, GroupLayout.DEFAULT_SIZE, 546, Short.MAX_VALUE)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(97)
+					.addComponent(lblNewLabel_1, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(txtCantidad, GroupLayout.PREFERRED_SIZE, 234, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(124, Short.MAX_VALUE))
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -146,24 +152,25 @@ public class FrmMonedas extends JFrame {
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
 						.addComponent(lblNewLabel_1)
 						.addComponent(txtCantidad, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(26)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblNewLabel_1_1, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblNewLabel_1_1_1, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+					.addGap(52)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+						.addComponent(lblNewLabel_1_1, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
 						.addComponent(cbDivOrigen, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
-						.addComponent(cbDivDestino, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+							.addComponent(cbDivDestino, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
+							.addComponent(lblNewLabel_1_1_1, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)))
+					.addGap(6)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(18)
-							.addComponent(btnHome, GroupLayout.PREFERRED_SIZE, 72, GroupLayout.PREFERRED_SIZE))
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addGap(50)
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-								.addComponent(lblNewLabel_1_2, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-								.addComponent(txtMonto, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE))))
-					.addContainerGap(51, Short.MAX_VALUE))
+							.addComponent(lblNewLabel_1_2, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(50)
+							.addComponent(txtMonto, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(18)
+							.addComponent(btnHome, GroupLayout.PREFERRED_SIZE, 72, GroupLayout.PREFERRED_SIZE)))
+					.addGap(23))
 		);
 		contentPane.setLayout(gl_contentPane);
 	}
