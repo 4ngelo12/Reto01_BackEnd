@@ -8,7 +8,7 @@ public enum ListaMonedas implements MetodosUnidades{
 	USD ("USD", "Dólar Americano", 1, new ImageIcon("src/Assets/Images/LogosBanderas/US.png")),
 	EUR ("EUR", "Euro", 1.10156, new ImageIcon("src/Assets/Images/LogosBanderas/EU.png")),
 	MXN ("MXN", "Peso Mexicano", 0.0599273, new ImageIcon("src/Assets/Images/LogosBanderas/MX.png")),
-	PEN ("PEN", "Sol Peruano", 0.278785, new ImageIcon("src/Assets/Images/LogosBanderas/PE.png")),
+	PEN ("PEN", "Sol Peruano", 0.28, new ImageIcon("src/Assets/Images/LogosBanderas/PE.png")),
 	GBP ("GBP", "Libra Esterlina", 1.28487, new ImageIcon("src/Assets/Images/LogosBanderas/GB.png")),
 	JPY ("JPY", "Yen Japonés", 0.00708422, new ImageIcon("src/Assets/Images/LogosBanderas/JP.png")),
 	KRW ("KRW", "Won Surcoreano", 0.000785195, new ImageIcon("src/Assets/Images/LogosBanderas/KR.png")),

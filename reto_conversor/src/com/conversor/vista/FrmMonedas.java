@@ -1,8 +1,5 @@
 package com.conversor.vista;
 
-import java.awt.EventQueue;
-
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -24,9 +21,11 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JButton;
 
 import com.conversor.controlador.MonedasController;
+
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import javax.swing.DefaultComboBoxModel;
 
 public class FrmMonedas extends JFrame {
 
@@ -41,7 +40,7 @@ public class FrmMonedas extends JFrame {
 	private JLabel lblNewLabel_1_1_1 = new JLabel("A");
 	private JLabel lblNewLabel_1_2 = new JLabel("Monto:");
 	private JButton btnHome = new JButton("Home");
-	private MonedasController mc = new MonedasController();
+	private MonedasController MC = new MonedasController();
 	
 	/**
 	 * Create the frame.
@@ -59,15 +58,14 @@ public class FrmMonedas extends JFrame {
 		initComponents();
 		Hashtable<Object, ImageIcon> hm = new Hashtable<Object, ImageIcon>();
 		
-		mc.AgregarDatosCb(cbDivOrigen, cbDivDestino, hm);
+		MC.AgregarDatosCb(cbDivOrigen, cbDivDestino, hm);
+		MC.DevolverConversion(txtCantidad, txtMonto, cbDivOrigen, cbDivDestino);
 		
 		//Cargar Eventos
 		CargarEventos();
 		
 		this.setLocationRelativeTo(null);
 		this.setTitle("Conversor de Monedas");
-		
-		
 	}
 	
 	private void initComponents() {
@@ -87,7 +85,6 @@ public class FrmMonedas extends JFrame {
 		
 		//TextFields
 		txtCantidad = new JTextField();
-		
 		txtCantidad.setText("1");
 		txtCantidad.setFont(new Font("SimSun", Font.PLAIN, 18));
 		txtCantidad.setColumns(10);
@@ -197,7 +194,7 @@ public class FrmMonedas extends JFrame {
 			public void keyTyped(KeyEvent e) {
 				int key = e.getKeyChar();
 				
-			    boolean numeros = key >= 48 && key <= 57 || key == 46;
+				boolean numeros = key >= 48 && key <= 57 || key == 46;
 			    boolean dotValidation = txtCantidad.getText().contains(".");
 			    
 			    if (!numeros || dotValidation)
@@ -205,6 +202,38 @@ public class FrmMonedas extends JFrame {
 			    	e.consume();
 			    }
 			}
+			
+			@Override
+			public void keyPressed(KeyEvent e) {
+				
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+				MC.DevolverConversion(txtCantidad, txtMonto, cbDivOrigen, cbDivDestino);
+			}
+		});
+		
+		cbDivOrigen.addItemListener(new ItemListener() {
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				// TODO Auto-generated method stub
+				if(e.getStateChange()==ItemEvent.SELECTED) {
+					MC.DevolverConversion(txtCantidad, txtMonto, cbDivOrigen, cbDivDestino);
+				}
+			}
+		});
+		
+		cbDivDestino.addItemListener(new ItemListener() {
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				// TODO Auto-generated method stub
+				if(e.getStateChange()==ItemEvent.SELECTED) {
+					MC.DevolverConversion(txtCantidad, txtMonto, cbDivOrigen, cbDivDestino);
+				}
+			}
 		});
 	}
+	
+	
 }
