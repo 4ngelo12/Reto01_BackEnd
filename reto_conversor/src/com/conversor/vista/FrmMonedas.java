@@ -15,6 +15,8 @@ import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Hashtable;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.swing.JComboBox;
 import javax.swing.LayoutStyle.ComponentPlacement;
@@ -200,23 +202,18 @@ public class FrmMonedas extends JFrame {
 			@Override
 			public void keyTyped(KeyEvent e) {
 				int key = e.getKeyChar();
-				
-				boolean numeros = key >= 48 && key <= 57 || key == 46;
-			    boolean dotValidation = txtCantidad.getText().contains(".");
-			    
-			    if (!numeros || dotValidation)
-			    {
-			    	e.consume();
-			    }
-			}
-			
-			@Override
-			public void keyPressed(KeyEvent e) {
-				
+
+		        boolean numeros = key >= 48 && key <= 57;
+				boolean dotValidation = txtCantidad.getText().contains(".");
+				    
+				if (!numeros && dotValidation)
+				{
+					e.consume();
+				}
 			}
 
 			@Override
-			public void keyReleased(KeyEvent e) {
+			public void keyReleased(KeyEvent e) {			    
 				MC.DevolverConversion(txtCantidad, txtMonto, cbDivOrigen, cbDivDestino);
 			}
 		});

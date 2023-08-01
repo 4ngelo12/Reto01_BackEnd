@@ -13,17 +13,12 @@ import com.conversor.modelo.ListaMonedas;
 import com.conversor.modelo.OperacionesConversion;
 
 public class MonedasController implements OperacionesConversion{
-	public void AgregarDatosCb(JComboBox<String> cb, JComboBox<String> cb2, Hashtable<Object, ImageIcon> hm) {
+	@Override
+	public void AgregarDatosCb(JComboBox<String> cb, JComboBox<String> cb2) {
 		for (var lstMoneda: ListaMonedas.values()) {
 			cb.addItem(lstMoneda.getUnidad());
 			cb2.addItem(lstMoneda.getUnidad());
-			hm.put(lstMoneda.getUnidad(), lstMoneda.getIcon());
 		}
-		
-		RenderIcon render = new RenderIcon(hm);
-		cb.setRenderer(render);
-		cb2.setRenderer(render);
-		cb2.setSelectedIndex(1);
 	}
 	
 	@Override
@@ -39,15 +34,15 @@ public class MonedasController implements OperacionesConversion{
 	}
 	
 	@Override
-	public String Conversion(double valorUnidad, double valorEntrada, double valorConvertir) {
+	public String Conversion(double valorEntrada, double valorUnidad, double valorConvertir) {
 		BigDecimal Unidad = new BigDecimal(valorUnidad);
 		BigDecimal Entrada = new BigDecimal(valorEntrada);
 		BigDecimal valorC = new BigDecimal(valorConvertir);
 		
 		BigDecimal multiplicacion = Unidad.multiply(Entrada);
-		BigDecimal conversion = multiplicacion.divide(valorC, 7, RoundingMode.FLOOR);
+		BigDecimal conversion = multiplicacion.divide(valorC, 4, RoundingMode.FLOOR);
 		
-		return conversion.toString();
+		return conversion.doubleValue() > 0 ? conversion.toString() : "0";
 	}
 	
 	@Override
@@ -59,5 +54,18 @@ public class MonedasController implements OperacionesConversion{
     	valorDestionCb = ObtenerValor(cb2);
     	
     	txtMonto.setText(Conversion(valorOrigenTxt, valorOrigenCb, valorDestionCb));
+	}
+	
+	public void AgregarDatosCb(JComboBox<String> cb, JComboBox<String> cb2, Hashtable<Object, ImageIcon> hm) {
+		for (var lstMoneda: ListaMonedas.values()) {
+			cb.addItem(lstMoneda.getUnidad());
+			cb2.addItem(lstMoneda.getUnidad());
+			hm.put(lstMoneda.getUnidad(), lstMoneda.getIcon());
+		}
+		
+		RenderIcon render = new RenderIcon(hm);
+		cb.setRenderer(render);
+		cb2.setRenderer(render);
+		cb2.setSelectedIndex(1);
 	}
 }
