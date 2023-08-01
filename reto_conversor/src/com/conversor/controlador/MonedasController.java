@@ -1,7 +1,7 @@
 package com.conversor.controlador;
 
+import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Hashtable;
 
@@ -40,10 +40,14 @@ public class MonedasController implements OperacionesConversion{
 	
 	@Override
 	public String Conversion(double valorUnidad, double valorEntrada, double valorConvertir) {
-		DecimalFormat df = new DecimalFormat("0.000000");
-		df.setRoundingMode(RoundingMode.HALF_UP);
-		double operacion = ((valorUnidad * valorEntrada / valorConvertir));
-		return df.format(operacion);
+		BigDecimal Unidad = new BigDecimal(valorUnidad);
+		BigDecimal Entrada = new BigDecimal(valorEntrada);
+		BigDecimal valorC = new BigDecimal(valorConvertir);
+		
+		BigDecimal multiplicacion = Unidad.multiply(Entrada);
+		BigDecimal conversion = multiplicacion.divide(valorC, 7, RoundingMode.FLOOR);
+		
+		return conversion.toString();
 	}
 	
 	@Override

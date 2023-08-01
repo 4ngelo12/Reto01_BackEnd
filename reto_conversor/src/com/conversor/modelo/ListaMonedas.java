@@ -34,21 +34,19 @@ public enum ListaMonedas implements MetodosUnidades{
 		return this.unidad;
 	}
 
-	public String getNombreUnidad() {
-		// TODO Auto-generated method stub
-		return this.nombreUnidad;
-	}
-
 	@Override
 	public double getValor() {
 		// TODO Auto-generated method stub
 		return this.valor;
 	}
 	
+	public String getNombreUnidad() {
+		// TODO Auto-generated method stub
+		return this.nombreUnidad;
+	}
 	
 	public ImageIcon getIcon() {
 		// TODO Auto-generated method stub
 		return this.icon;
 	}
-
 }
