@@ -38,11 +38,11 @@ public class MonedasController implements OperacionesConversion{
 		BigDecimal Unidad = new BigDecimal(valorUnidad);
 		BigDecimal Entrada = new BigDecimal(valorEntrada);
 		BigDecimal valorC = new BigDecimal(valorConvertir);
-		
+
 		BigDecimal multiplicacion = Unidad.multiply(Entrada);
 		BigDecimal conversion = multiplicacion.divide(valorC, 4, RoundingMode.FLOOR);
 		
-		return conversion.doubleValue() > 0 ? conversion.toString() : "0";
+		return conversion.doubleValue() != 0 ? conversion.toString() : "0";
 	}
 	
 	@Override
@@ -67,5 +67,12 @@ public class MonedasController implements OperacionesConversion{
 		cb.setRenderer(render);
 		cb2.setRenderer(render);
 		cb2.setSelectedIndex(1);
+	}
+	
+	public String removeLastChar(String str) {
+		if (str == null || str.length() == 0) {
+			return str;
+		}
+		return str.substring(0, str.length() - 1);
 	}
 }

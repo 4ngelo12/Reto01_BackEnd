@@ -1,6 +1,7 @@
 package com.conversor.vista;
 
 import javax.swing.JFrame;
+
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
@@ -11,12 +12,13 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.nio.charset.StandardCharsets;
 import java.util.Hashtable;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import javax.swing.JComboBox;
 import javax.swing.LayoutStyle.ComponentPlacement;
@@ -197,24 +199,30 @@ public class FrmMonedas extends JFrame {
 				dispose();
 			}
 		});
-		
+
 		txtCantidad.addKeyListener(new KeyAdapter() {
 			@Override
-			public void keyTyped(KeyEvent e) {
+			public void keyReleased(KeyEvent e) {	
 				int key = e.getKeyChar();
 
-		        boolean numeros = key >= 48 && key <= 57;
-				boolean dotValidation = txtCantidad.getText().contains(".");
-				    
-				if (!numeros && dotValidation)
-				{
-					e.consume();
-				}
-			}
+		        boolean numeros = (key >= 48 && key <= 57) || 
+		        		key == 46 || e.getKeyCode()==KeyEvent.VK_ENTER || e.getKeyCode() == KeyEvent.VK_BACK_SPACE;
 
-			@Override
-			public void keyReleased(KeyEvent e) {			    
-				MC.DevolverConversion(txtCantidad, txtMonto, cbDivOrigen, cbDivDestino);
+		        int count = 0;
+		        
+		        for (int i = 0; i < txtCantidad.getText().length(); i++) {
+		        	if (String.valueOf(txtCantidad.getText().charAt(i)).contains(".")) {
+		        		count++;
+		        	}
+		        }
+		        
+				if (!numeros || count > 1)
+				{
+					JOptionPane.showMessageDialog(null, "El valor ingresado no es valido", "Advertencia", 2);
+					txtCantidad.setText(MC.removeLastChar(txtCantidad.getText()));
+				} 
+				
+				MC.DevolverConversion(txtCantidad, txtMonto, cbDivOrigen, cbDivDestino);				
 			}
 		});
 		
@@ -238,6 +246,4 @@ public class FrmMonedas extends JFrame {
 			}
 		});
 	}
-	
-	
 }

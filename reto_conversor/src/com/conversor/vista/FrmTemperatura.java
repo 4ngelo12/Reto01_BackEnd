@@ -12,6 +12,8 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
@@ -19,6 +21,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.nio.charset.StandardCharsets;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -194,21 +197,35 @@ public class FrmTemperatura extends JFrame {
 		
 		txtCantidad.addKeyListener(new KeyAdapter() {
 			@Override
-			public void keyTyped(KeyEvent e) {
-				int key = e.getKeyChar();
-
-		        boolean numeros = key >= 48 && key <= 57 || key == 45;
-				boolean dotValidation = txtCantidad.getText().contains(".");
-				    
-				if (!numeros && dotValidation)
-				{
-					e.consume();
-				}
-			}
-
-			@Override
 			public void keyReleased(KeyEvent e) {
-				TC.DevolverConversion(txtCantidad, txtConvertido, cbTemOrigen, cbTemDestino);
+				
+				int key = e.getKeyChar();
+		        boolean numeros = (key >= 48 && key <= 57) || key == 45 || 
+		        		key == 46 || e.getKeyCode()==KeyEvent.VK_ENTER || e.getKeyCode() == KeyEvent.VK_BACK_SPACE;
+		        boolean empieza = true;
+		        int dotCount = 0;
+		        int minusCount = 0;
+		        
+		        for (int i = 0; i < txtCantidad.getText().length(); i++) {
+		        	if (String.valueOf(txtCantidad.getText().charAt(i)).contains(".")) {
+		        		dotCount++;
+		        	} else if (String.valueOf(txtCantidad.getText().charAt(i)).contains("-")) {
+		        		minusCount++;
+		        		empieza = txtCantidad.getText().startsWith("-");
+		        	}
+		        }
+		        
+				if (!numeros || (dotCount > 1 || minusCount > 1) || !empieza)
+				{
+					JOptionPane.showMessageDialog(null, "El valor ingresado no es valido", "Advertencia", 2);
+					txtCantidad.setText(TC.removeLastChar(txtCantidad.getText()));
+				} 
+				
+				try {
+					TC.DevolverConversion(txtCantidad, txtConvertido, cbTemOrigen, cbTemDestino);
+				} catch (Exception e2) {
+					// TODO: handle exception
+				}
 			}
 		});
 		
