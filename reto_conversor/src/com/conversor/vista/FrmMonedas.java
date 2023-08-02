@@ -17,7 +17,6 @@ import javax.swing.JOptionPane;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.nio.charset.StandardCharsets;
 import java.util.Hashtable;
 
 import javax.swing.JComboBox;
@@ -45,13 +44,14 @@ public class FrmMonedas extends JFrame {
 	private JLabel lblNewLabel_1_2 = new JLabel("Monto:");
 	private JButton btnHome = new JButton("Home");
 	private MonedasController MC = new MonedasController();
+	private JButton btnInvertir = new JButton("");
 	
 	/**
 	 * Create the frame.
 	 */
 	public FrmMonedas() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 570, 393);
+		setBounds(100, 100, 570, 418);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(234, 234, 220));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -114,32 +114,17 @@ public class FrmMonedas extends JFrame {
 		Icon icon = new ImageIcon(image.getImage().getScaledInstance(50, 50, DO_NOTHING_ON_CLOSE));
 		btnHome.setIcon(icon);
 		
+		btnInvertir.setContentAreaFilled(false);
+		btnInvertir.setFocusPainted(false);
+		btnInvertir.setBorderPainted(false);
+		ImageIcon imageInvertir = new ImageIcon("src/Assets/Images/LogosInicio/logo_intercambiar.png");
+		Icon iconInvertir = new ImageIcon(imageInvertir.getImage().getScaledInstance(50, 50, DO_NOTHING_ON_CLOSE));
+		btnInvertir.setIcon(iconInvertir);
+		
 		
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(33)
-							.addComponent(lblNewLabel_1_2, GroupLayout.PREFERRED_SIZE, 73, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(txtMonto, GroupLayout.PREFERRED_SIZE, 176, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(41)
-							.addComponent(lblNewLabel_1_1, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(cbDivOrigen, GroupLayout.PREFERRED_SIZE, 147, GroupLayout.PREFERRED_SIZE)))
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(54)
-							.addComponent(btnHome, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(39)
-							.addComponent(lblNewLabel_1_1_1)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(cbDivDestino, GroupLayout.PREFERRED_SIZE, 147, GroupLayout.PREFERRED_SIZE)))
-					.addContainerGap(46, Short.MAX_VALUE))
 				.addComponent(lblNewLabel, GroupLayout.DEFAULT_SIZE, 546, Short.MAX_VALUE)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGap(97)
@@ -147,6 +132,27 @@ public class FrmMonedas extends JFrame {
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(txtCantidad, GroupLayout.PREFERRED_SIZE, 234, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap(124, Short.MAX_VALUE))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(33)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addComponent(lblNewLabel_1_1, GroupLayout.PREFERRED_SIZE, 46, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(cbDivOrigen, GroupLayout.PREFERRED_SIZE, 121, GroupLayout.PREFERRED_SIZE)
+							.addGap(28)
+							.addComponent(btnInvertir, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)
+							.addGap(27)
+							.addComponent(lblNewLabel_1_1_1)
+							.addGap(18)
+							.addComponent(cbDivDestino, GroupLayout.PREFERRED_SIZE, 121, GroupLayout.PREFERRED_SIZE)
+							.addContainerGap())
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addComponent(lblNewLabel_1_2, GroupLayout.PREFERRED_SIZE, 73, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(txtMonto, GroupLayout.PREFERRED_SIZE, 176, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
+							.addComponent(btnHome, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE)
+							.addGap(45))))
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -156,25 +162,23 @@ public class FrmMonedas extends JFrame {
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
 						.addComponent(lblNewLabel_1)
 						.addComponent(txtCantidad, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(52)
+					.addGap(56)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+						.addComponent(cbDivOrigen, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblNewLabel_1_1, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
-						.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-							.addComponent(cbDivDestino, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
-							.addComponent(lblNewLabel_1_1_1, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE))
-						.addComponent(cbDivOrigen, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE))
-					.addGap(6)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addComponent(btnInvertir, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+						.addComponent(cbDivDestino, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblNewLabel_1_1_1, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING, false)
 						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(50)
-							.addComponent(lblNewLabel_1_2, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE))
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+								.addComponent(txtMonto, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE)
+								.addComponent(lblNewLabel_1_2, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE))
+							.addGap(42))
 						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(50)
-							.addComponent(txtMonto, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(18)
-							.addComponent(btnHome, GroupLayout.PREFERRED_SIZE, 72, GroupLayout.PREFERRED_SIZE)))
-					.addGap(23))
+							.addComponent(btnHome, GroupLayout.PREFERRED_SIZE, 72, GroupLayout.PREFERRED_SIZE)
+							.addGap(34))))
 		);
 		contentPane.setLayout(gl_contentPane);
 	}
@@ -199,31 +203,18 @@ public class FrmMonedas extends JFrame {
 				dispose();
 			}
 		});
+		
+		btnInvertir.addMouseListener(new MouseAdapter() {
+            @Override
+			public void mouseClicked(MouseEvent e) {
+            	MC.IntercambiarValor(cbDivOrigen, cbDivDestino);
+			}
+		});
 
 		txtCantidad.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent e) {	
-				int key = e.getKeyChar();
-
-		        boolean numeros = (key >= 48 && key <= 57) || 
-		        		key == 46 || e.getKeyCode()==KeyEvent.VK_ENTER || e.getKeyCode() == KeyEvent.VK_BACK_SPACE 
-		        		|| e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_RIGHT;
-
-		        int count = 0;
-		        
-		        for (int i = 0; i < txtCantidad.getText().length(); i++) {
-		        	if (String.valueOf(txtCantidad.getText().charAt(i)).contains(".")) {
-		        		count++;
-		        	}
-		        }
-		        
-				if (!numeros || count > 1)
-				{
-					JOptionPane.showMessageDialog(null, "El valor ingresado no es valido", "Advertencia", 2);
-					txtCantidad.setText(MC.removeLastChar(txtCantidad.getText()));
-				} 
-				
-				MC.DevolverConversion(txtCantidad, txtMonto, cbDivOrigen, cbDivDestino);				
+				MC.Validacion(txtCantidad, e, txtMonto, cbDivOrigen, cbDivDestino);			
 			}
 		});
 		
@@ -232,6 +223,7 @@ public class FrmMonedas extends JFrame {
 			public void itemStateChanged(ItemEvent e) {
 				// TODO Auto-generated method stub
 				if(e.getStateChange()==ItemEvent.SELECTED) {
+					MC.IntercambiarValor(cbDivOrigen, cbDivDestino);
 					MC.DevolverConversion(txtCantidad, txtMonto, cbDivOrigen, cbDivDestino);
 				}
 			}

@@ -1,9 +1,11 @@
 package com.conversor.controlador;
 
+import java.awt.event.KeyEvent;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import com.conversor.modelo.ListaTemperatura;
@@ -102,10 +104,54 @@ public class TemperaturaController implements OperacionesConversion{
     	txtMonto.setText(Conversion(valorOrigenTxt, valorOrigenCb, valorDestionCb));
 	}
 
-	public String removeLastChar(String str) {
+	@Override
+	public String RemoveLastChar(String str) {
 		if (str == null || str.length() == 0) {
 			return str;
 		}
 		return str.substring(0, str.length() - 1);
+	}
+	
+	@Override
+	public void IntercambiarValor(JComboBox<String> cb1, JComboBox<String> cb2) {
+		int primerValor = cb2.getSelectedIndex();
+		int segundoValor = cb1.getSelectedIndex();
+		
+		cb1.setSelectedIndex(primerValor);
+		cb2.setSelectedIndex(segundoValor);
+	}
+	
+	@Override
+	public void Validacion(JTextField txtCantidad, KeyEvent e, JTextField txtMonto, JComboBox<String> cbTemOrigen,
+			JComboBox<String> cbTemDestino) {
+		// TODO Auto-generated method stub
+		int key = e.getKeyChar();
+        boolean numeros = (key >= 48 && key <= 57) || key == 45 || 
+        		key == 46 || e.getKeyCode()==KeyEvent.VK_ENTER || e.getKeyCode() == KeyEvent.VK_BACK_SPACE
+        		||  e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_RIGHT;
+        boolean empieza = true;
+        int dotCount = 0;
+        int minusCount = 0;
+        
+        for (int i = 0; i < txtCantidad.getText().length(); i++) {
+        	if (String.valueOf(txtCantidad.getText().charAt(i)).contains(".")) {
+        		dotCount++;
+        	} else if (String.valueOf(txtCantidad.getText().charAt(i)).contains("-")) {
+        		minusCount++;
+        		empieza = txtCantidad.getText().startsWith("-");
+        	}
+        }
+        
+		if (!numeros || (dotCount > 1 || minusCount > 1) || !empieza)
+		{
+			JOptionPane.showMessageDialog(null, "El valor ingresado no es valido", "Advertencia", 2);
+			txtCantidad.setText(RemoveLastChar(txtCantidad.getText()));
+		} 
+		
+		try {
+			DevolverConversion(txtCantidad, txtMonto, cbTemOrigen, cbTemDestino);
+		} catch (Exception e2) {
+			// TODO: handle exception
+		}
 	}
 }

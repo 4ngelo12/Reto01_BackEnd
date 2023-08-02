@@ -43,6 +43,7 @@ public class FrmTemperatura extends JFrame {
 	private JComboBox<String> cbTemOrigen = new JComboBox<String>();
 	private JComboBox<String> cbTemDestino = new JComboBox<String>();
 	private JButton btnHome = new JButton("Home");
+	private JButton btnInvertir = new JButton("");
 	private TemperaturaController TC = new TemperaturaController();
 	
 	/**
@@ -50,7 +51,7 @@ public class FrmTemperatura extends JFrame {
 	 */
 	public FrmTemperatura() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 639, 366);
+		setBounds(100, 100, 587, 366);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(234, 234, 220));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -112,6 +113,13 @@ public class FrmTemperatura extends JFrame {
 		txtConvertido.setFont(new Font("SimSun", Font.PLAIN, 18));
 		txtConvertido.setColumns(10);
 		
+		btnInvertir.setFocusPainted(false);
+		btnInvertir.setContentAreaFilled(false);
+		btnInvertir.setBorderPainted(false);
+		ImageIcon imageInvertir = new ImageIcon("src/Assets/Images/LogosInicio/logo_intercambiar.png");
+		Icon iconInvertir = new ImageIcon(imageInvertir.getImage().getScaledInstance(50, 50, DO_NOTHING_ON_CLOSE));
+		btnInvertir.setIcon(iconInvertir);
+		
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -130,18 +138,20 @@ public class FrmTemperatura extends JFrame {
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(txtConvertido, GroupLayout.PREFERRED_SIZE, 162, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED, 132, Short.MAX_VALUE)
-							.addComponent(btnHome, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE)
-							.addGap(106))
+							.addComponent(btnHome, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE))
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addGap(23)
 							.addComponent(lblNewLabel_1_1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 							.addGap(18)
 							.addComponent(cbTemOrigen, GroupLayout.PREFERRED_SIZE, 135, GroupLayout.PREFERRED_SIZE)
-							.addGap(111)
+							.addGap(31)
+							.addComponent(btnInvertir, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)
+							.addGap(18)
 							.addComponent(lblNewLabel_1_1_1, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addGap(18)
 							.addComponent(cbTemDestino, GroupLayout.PREFERRED_SIZE, 139, GroupLayout.PREFERRED_SIZE)
-							.addGap(140))))
+							.addGap(26)))
+					.addGap(106))
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -153,14 +163,20 @@ public class FrmTemperatura extends JFrame {
 							.addGap(3)
 							.addComponent(lblNewLabel_1, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE))
 						.addComponent(txtCantidad, GroupLayout.PREFERRED_SIZE, 28, GroupLayout.PREFERRED_SIZE))
-					.addGap(42)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-						.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
-							.addComponent(lblNewLabel_1_1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-							.addComponent(lblNewLabel_1_1_1, GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
-							.addComponent(cbTemOrigen, Alignment.TRAILING, 0, 0, Short.MAX_VALUE))
-						.addComponent(cbTemDestino, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(26)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+								.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
+									.addComponent(lblNewLabel_1_1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+									.addComponent(cbTemOrigen, Alignment.TRAILING, 0, 0, Short.MAX_VALUE))
+								.addComponent(btnInvertir, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
+								.addComponent(lblNewLabel_1_1_1, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(cbTemDestino, Alignment.TRAILING))))
+					.addGap(18)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addComponent(btnHome, GroupLayout.PREFERRED_SIZE, 72, GroupLayout.PREFERRED_SIZE)
@@ -195,38 +211,17 @@ public class FrmTemperatura extends JFrame {
 			}
 		});
 		
+		btnInvertir.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				TC.IntercambiarValor(cbTemOrigen, cbTemDestino);
+			}
+		});
+		
 		txtCantidad.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent e) {
-				
-				int key = e.getKeyChar();
-		        boolean numeros = (key >= 48 && key <= 57) || key == 45 || 
-		        		key == 46 || e.getKeyCode()==KeyEvent.VK_ENTER || e.getKeyCode() == KeyEvent.VK_BACK_SPACE
-		        		||  e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_RIGHT;
-		        boolean empieza = true;
-		        int dotCount = 0;
-		        int minusCount = 0;
-		        
-		        for (int i = 0; i < txtCantidad.getText().length(); i++) {
-		        	if (String.valueOf(txtCantidad.getText().charAt(i)).contains(".")) {
-		        		dotCount++;
-		        	} else if (String.valueOf(txtCantidad.getText().charAt(i)).contains("-")) {
-		        		minusCount++;
-		        		empieza = txtCantidad.getText().startsWith("-");
-		        	}
-		        }
-		        
-				if (!numeros || (dotCount > 1 || minusCount > 1) || !empieza)
-				{
-					JOptionPane.showMessageDialog(null, "El valor ingresado no es valido", "Advertencia", 2);
-					txtCantidad.setText(TC.removeLastChar(txtCantidad.getText()));
-				} 
-				
-				try {
-					TC.DevolverConversion(txtCantidad, txtConvertido, cbTemOrigen, cbTemDestino);
-				} catch (Exception e2) {
-					// TODO: handle exception
-				}
+				TC.Validacion(txtCantidad, e, txtConvertido, cbTemOrigen, cbTemDestino);
 			}
 		});
 		
