@@ -201,7 +201,8 @@ public class FrmTemperatura extends JFrame {
 				
 				int key = e.getKeyChar();
 		        boolean numeros = (key >= 48 && key <= 57) || key == 45 || 
-		        		key == 46 || e.getKeyCode()==KeyEvent.VK_ENTER || e.getKeyCode() == KeyEvent.VK_BACK_SPACE;
+		        		key == 46 || e.getKeyCode()==KeyEvent.VK_ENTER || e.getKeyCode() == KeyEvent.VK_BACK_SPACE
+		        		||  e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_RIGHT;
 		        boolean empieza = true;
 		        int dotCount = 0;
 		        int minusCount = 0;

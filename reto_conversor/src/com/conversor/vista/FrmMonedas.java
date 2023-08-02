@@ -139,7 +139,7 @@ public class FrmMonedas extends JFrame {
 							.addComponent(lblNewLabel_1_1_1)
 							.addPreferredGap(ComponentPlacement.UNRELATED)
 							.addComponent(cbDivDestino, GroupLayout.PREFERRED_SIZE, 147, GroupLayout.PREFERRED_SIZE)))
-					.addContainerGap(81, Short.MAX_VALUE))
+					.addContainerGap(46, Short.MAX_VALUE))
 				.addComponent(lblNewLabel, GroupLayout.DEFAULT_SIZE, 546, Short.MAX_VALUE)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGap(97)
@@ -159,10 +159,10 @@ public class FrmMonedas extends JFrame {
 					.addGap(52)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
 						.addComponent(lblNewLabel_1_1, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
-						.addComponent(cbDivOrigen, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
 						.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 							.addComponent(cbDivDestino, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
-							.addComponent(lblNewLabel_1_1_1, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)))
+							.addComponent(lblNewLabel_1_1_1, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE))
+						.addComponent(cbDivOrigen, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE))
 					.addGap(6)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_contentPane.createSequentialGroup()
@@ -206,7 +206,8 @@ public class FrmMonedas extends JFrame {
 				int key = e.getKeyChar();
 
 		        boolean numeros = (key >= 48 && key <= 57) || 
-		        		key == 46 || e.getKeyCode()==KeyEvent.VK_ENTER || e.getKeyCode() == KeyEvent.VK_BACK_SPACE;
+		        		key == 46 || e.getKeyCode()==KeyEvent.VK_ENTER || e.getKeyCode() == KeyEvent.VK_BACK_SPACE 
+		        		|| e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_RIGHT;
 
 		        int count = 0;
 		        

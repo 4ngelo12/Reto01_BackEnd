@@ -32,7 +32,7 @@ public class TemperaturaController implements OperacionesConversion{
 
 	@Override
 	public String Conversion(double valorEntrada, double valorUnidad, double valorConvertir) {
-		DecimalFormat df = new DecimalFormat("0.00");
+		DecimalFormat df = new DecimalFormat("0.000");
 		df.setRoundingMode(RoundingMode.HALF_UP);
 		String valorEvaluacion = String.valueOf((int) valorConvertir);
 		String valorDevolver = "";
@@ -40,7 +40,7 @@ public class TemperaturaController implements OperacionesConversion{
 			if (valorUnidad == 0) {
 				switch (valorEvaluacion) {
 				case "0":
-					valorDevolver = "0";
+					valorDevolver = String.valueOf(valorEntrada);
 					break;
 				case "1": 
 					valorDevolver = String.valueOf((valorEntrada * 1.8) + 32);
@@ -54,10 +54,13 @@ public class TemperaturaController implements OperacionesConversion{
 			} else if (valorUnidad == 1) {
 				switch (valorEvaluacion) {
 				case "0": 
-					valorDevolver = String.valueOf((valorEntrada - 32) * (5/9));
+					valorDevolver = String.valueOf((valorEntrada - 32) * 5/9);
+					break;
+				case "1": 
+					valorDevolver = String.valueOf(valorEntrada);
 					break;
 				case "2":
-					valorDevolver = String.valueOf((valorEntrada - 32) * (5/9) + 273.15);
+					valorDevolver = String.valueOf((valorEntrada - 32) * 5/9 + 273.15);
 					break;
 				default:
 					throw new IllegalArgumentException("Unexpected value: " + valorEvaluacion);
@@ -70,6 +73,8 @@ public class TemperaturaController implements OperacionesConversion{
 				case "1":
 					valorDevolver = String.valueOf((valorEntrada - 273.15) * 1.8 + 32);
 					break;
+				case "2":
+					valorDevolver = String.valueOf(valorEntrada);
 				default:
 					throw new IllegalArgumentException("Unexpected value: " + valorEvaluacion);
 				}
@@ -96,7 +101,7 @@ public class TemperaturaController implements OperacionesConversion{
     	
     	txtMonto.setText(Conversion(valorOrigenTxt, valorOrigenCb, valorDestionCb));
 	}
-	
+
 	public String removeLastChar(String str) {
 		if (str == null || str.length() == 0) {
 			return str;
