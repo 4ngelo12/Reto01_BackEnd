@@ -58,19 +58,6 @@ public class MonedasController implements OperacionesConversion{
     	txtMonto.setText(Conversion(valorOrigenTxt, valorOrigenCb, valorDestionCb));
 	}
 	
-	public void AgregarDatosCb(JComboBox<String> cb, JComboBox<String> cb2, Hashtable<Object, ImageIcon> hm) {
-		for (var lstMoneda: ListaMonedas.values()) {
-			cb.addItem(lstMoneda.getUnidad());
-			cb2.addItem(lstMoneda.getUnidad());
-			hm.put(lstMoneda.getUnidad(), lstMoneda.getIcon());
-		}
-		
-		RenderIcon render = new RenderIcon(hm);
-		cb.setRenderer(render);
-		cb2.setRenderer(render);
-		cb2.setSelectedIndex(1);
-	}
-	
 	@Override
 	public String RemoveLastChar(String str) {
 		if (str == null || str.length() == 0) {
@@ -88,6 +75,7 @@ public class MonedasController implements OperacionesConversion{
 		cb2.setSelectedIndex(segundoValor);
 	}
 	
+	@Override
 	public void Validacion(JTextField txtCantidad, KeyEvent e, JTextField txtMonto, JComboBox<String> cbDivOrigen, 
 			JComboBox<String> cbDivDestino) {
 		int key = e.getKeyChar();
@@ -111,5 +99,24 @@ public class MonedasController implements OperacionesConversion{
 		} 
 		
 		DevolverConversion(txtCantidad, txtMonto, cbDivOrigen, cbDivDestino);	
+	}
+	
+	/**
+	 * 
+	 * @param cb Instancia de un JComboBox con datos del tipo String
+	 * @param cb2 Instancia de un JComboBox con datos del tipo String
+	 * @param hm Hastable con el valor de la unidad y el icono de la divisa
+	 */
+	public void AgregarDatosCb(JComboBox<String> cb, JComboBox<String> cb2, Hashtable<Object, ImageIcon> hm) {
+		for (var lstMoneda: ListaMonedas.values()) {
+			cb.addItem(lstMoneda.getUnidad());
+			cb2.addItem(lstMoneda.getUnidad());
+			hm.put(lstMoneda.getUnidad(), lstMoneda.getIcon());
+		}
+		
+		RenderIcon render = new RenderIcon(hm);
+		cb.setRenderer(render);
+		cb2.setRenderer(render);
+		cb2.setSelectedIndex(1);
 	}
 }

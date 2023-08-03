@@ -15,7 +15,9 @@ public class RenderIcon extends DefaultListCellRenderer{
 	public RenderIcon (Hashtable<Object, ImageIcon> image) {
 		this.image = image;
 	}
-	
+	/**
+	 * Método para obtener el valor de la imagen para el icono de la divisa
+	 */
 	@Override
 	public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected,
 			boolean cellHasFocus) {

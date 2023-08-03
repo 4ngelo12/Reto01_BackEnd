@@ -27,6 +27,10 @@ public enum ListaTemperatura implements MetodosUnidades{
 		return this.valor;
 	}
 	
+	/**
+	 * Método para obtener el nombre de la unidad
+	 * @return Valor del nombre de la unidad
+	 */
 	public String getNombreUnidad() {
 		return this.nombreUnidad;
 	}

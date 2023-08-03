@@ -38,6 +38,10 @@ public enum ListaMonedas implements MetodosUnidades{
 		return this.valor;
 	}
 	
+	/**
+	 * Método para obener el icono de la divisa seleccionada
+	 * @return Devuelve el icono de la divisa
+	 */
 	public ImageIcon getIcon() {
 		// TODO Auto-generated method stub
 		return this.icon;
