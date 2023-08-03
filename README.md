@@ -29,3 +29,16 @@ Adicionalmente como desafío extra se plantea lo añadir al programa otro tipo d
 
 ## Herramientas utilizadas
 
+- JDK 17
+- IDE Eclipse 2023-06
+
+## Instalación
+
+1. Clonar el repositorio
+   ```sh
+   git clone https://github.com/4ngelo12/Reto01_BackEnd.git
+
+2. Abrir el proyecto en el IDE de preferencia
+3. Ejecutar el programa
+
+## Funcionalidad del Programa
