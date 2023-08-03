@@ -60,9 +60,8 @@ public class FrmMonedas extends JFrame {
 		
 		//Colocar Componentes
 		initComponents();
-		Hashtable<Object, ImageIcon> hm = new Hashtable<Object, ImageIcon>();
 		
-		MC.AgregarDatosCb(cbDivOrigen, cbDivDestino, hm);
+		MC.AgregarDatosCb(cbDivOrigen, cbDivDestino);
 		MC.DevolverConversion(txtCantidad, txtMonto, cbDivOrigen, cbDivDestino);
 		
 		//Cargar Eventos
@@ -110,14 +109,14 @@ public class FrmMonedas extends JFrame {
 		btnHome.setContentAreaFilled(false);
 		btnHome.setFocusPainted(false);
 		btnHome.setBorderPainted(false);
-		ImageIcon image = new ImageIcon("src/Assets/Images/LogosInicio/logo_home.png");
+		ImageIcon image = new ImageIcon(FrmInicio.class.getResource("/Assets/Images/LogosInicio/logo_home.png"));
 		Icon icon = new ImageIcon(image.getImage().getScaledInstance(50, 50, DO_NOTHING_ON_CLOSE));
 		btnHome.setIcon(icon);
 		
 		btnInvertir.setContentAreaFilled(false);
 		btnInvertir.setFocusPainted(false);
 		btnInvertir.setBorderPainted(false);
-		ImageIcon imageInvertir = new ImageIcon("src/Assets/Images/LogosInicio/logo_intercambiar.png");
+		ImageIcon imageInvertir = new ImageIcon(FrmInicio.class.getResource("/Assets/Images/LogosInicio/logo_intercambiar.png"));
 		Icon iconInvertir = new ImageIcon(imageInvertir.getImage().getScaledInstance(50, 50, DO_NOTHING_ON_CLOSE));
 		btnInvertir.setIcon(iconInvertir);
 		
@@ -223,7 +222,6 @@ public class FrmMonedas extends JFrame {
 			public void itemStateChanged(ItemEvent e) {
 				// TODO Auto-generated method stub
 				if(e.getStateChange()==ItemEvent.SELECTED) {
-					MC.IntercambiarValor(cbDivOrigen, cbDivDestino);
 					MC.DevolverConversion(txtCantidad, txtMonto, cbDivOrigen, cbDivDestino);
 				}
 			}

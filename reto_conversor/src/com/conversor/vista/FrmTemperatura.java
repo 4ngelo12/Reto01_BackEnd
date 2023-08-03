@@ -101,7 +101,7 @@ public class FrmTemperatura extends JFrame {
 		btnHome.setFocusPainted(false);
 		btnHome.setContentAreaFilled(false);
 		btnHome.setBorderPainted(false);
-		ImageIcon image = new ImageIcon("src/Assets/Images/LogosInicio/logo_home.png");
+		ImageIcon image = new ImageIcon(FrmInicio.class.getResource("/Assets/Images/LogosInicio/logo_home.png"));
 		Icon icon = new ImageIcon(image.getImage().getScaledInstance(50, 50, DO_NOTHING_ON_CLOSE));
 		btnHome.setIcon(icon);
 		
@@ -116,7 +116,7 @@ public class FrmTemperatura extends JFrame {
 		btnInvertir.setFocusPainted(false);
 		btnInvertir.setContentAreaFilled(false);
 		btnInvertir.setBorderPainted(false);
-		ImageIcon imageInvertir = new ImageIcon("src/Assets/Images/LogosInicio/logo_intercambiar.png");
+		ImageIcon imageInvertir = new ImageIcon(FrmInicio.class.getResource("/Assets/Images/LogosInicio/logo_intercambiar.png"));
 		Icon iconInvertir = new ImageIcon(imageInvertir.getImage().getScaledInstance(50, 50, DO_NOTHING_ON_CLOSE));
 		btnInvertir.setIcon(iconInvertir);
 		

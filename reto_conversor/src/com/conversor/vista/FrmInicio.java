@@ -87,7 +87,7 @@ public class FrmInicio extends JFrame {
 		btnMoneda.setContentAreaFilled(false);
 		btnMoneda.setFocusPainted(false);
 		btnMoneda.setBorderPainted(false);
-		ImageIcon image = new ImageIcon("src/Assets/Images/LogosInicio/logos_divisas.png");
+		ImageIcon image = new ImageIcon(FrmInicio.class.getResource("/Assets/Images/LogosInicio/logos_divisas.png"));
 		Icon icon = new ImageIcon(image.getImage().getScaledInstance(125, 125, DO_NOTHING_ON_CLOSE));
 		btnMoneda.setIcon(icon);
 		
@@ -97,7 +97,7 @@ public class FrmInicio extends JFrame {
 		btnTemperatura.setFocusPainted(false);
 		btnTemperatura.setContentAreaFilled(false);
 		btnTemperatura.setBorderPainted(false);
-		ImageIcon imageTemp = new ImageIcon("src/Assets/Images/LogosInicio/logo_temperatura.png");
+		ImageIcon imageTemp = new ImageIcon(FrmInicio.class.getResource("/Assets/Images/LogosInicio/logo_temperatura.png"));
 		Icon iconTemp = new ImageIcon(imageTemp.getImage().getScaledInstance(125, 125, DO_NOTHING_ON_CLOSE));
 		btnTemperatura.setIcon(iconTemp);
 		
@@ -105,7 +105,7 @@ public class FrmInicio extends JFrame {
 		btnRepositorio.setFocusPainted(false);
 		btnRepositorio.setContentAreaFilled(false);
 		btnRepositorio.setBorderPainted(false);
-		ImageIcon imageGit = new ImageIcon("src/Assets/Images/LogosInicio/logo_github.png");
+		ImageIcon imageGit = new ImageIcon(FrmInicio.class.getResource("/Assets/Images/LogosInicio/logo_github.png"));
 		Icon iconGit = new ImageIcon(imageGit.getImage().getScaledInstance(35, 35, DO_NOTHING_ON_CLOSE));
 		btnRepositorio.setIcon(iconGit);
 		
@@ -113,9 +113,9 @@ public class FrmInicio extends JFrame {
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(28)
+					.addGap(31)
 					.addComponent(btnMoneda, GroupLayout.PREFERRED_SIZE, 285, GroupLayout.PREFERRED_SIZE)
-					.addGap(45)
+					.addGap(42)
 					.addComponent(btnTemperatura, GroupLayout.PREFERRED_SIZE, 329, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap())
 				.addComponent(lblTitulo, GroupLayout.DEFAULT_SIZE, 707, Short.MAX_VALUE)
@@ -131,9 +131,9 @@ public class FrmInicio extends JFrame {
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addComponent(lblTitulo, GroupLayout.PREFERRED_SIZE, 74, GroupLayout.PREFERRED_SIZE)
 					.addGap(42)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnMoneda, GroupLayout.PREFERRED_SIZE, 154, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnTemperatura, GroupLayout.PREFERRED_SIZE, 154, GroupLayout.PREFERRED_SIZE))
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+						.addComponent(btnTemperatura, GroupLayout.PREFERRED_SIZE, 154, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnMoneda, GroupLayout.PREFERRED_SIZE, 154, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnRepositorio, GroupLayout.PREFERRED_SIZE, 61, GroupLayout.PREFERRED_SIZE)
