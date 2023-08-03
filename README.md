@@ -42,3 +42,5 @@ Adicionalmente como desafío extra se plantea lo añadir al programa otro tipo d
 3. Ejecutar el programa
 
 ## Funcionalidad del Programa
+
+<p align="Center"><img src="gif/funcionamiento.gif" height="400"></p>
